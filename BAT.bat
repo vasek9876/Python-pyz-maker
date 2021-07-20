@@ -13,6 +13,7 @@ set A2=yaml.py
 
 :: vnitřní nastavení
 @ECHO OFF
+set FILE_ZIP=package.zip
 set MY=%CD%
 set B=package
 
@@ -26,8 +27,7 @@ md %B%
 if NOT %A1:~-2,3% == py (
 md %B%\%A1%
 xcopy %A%\%A1% %B%\%A1% /s /e
-)
-else (
+) else (
 xcopy %A%\%A1% %B%
 )
 
@@ -35,8 +35,7 @@ xcopy %A%\%A1% %B%
 if NOT %A2:~-2,3% == py (
 md %B%\%A2%
 xcopy %A%\%A2% %B%\%A2% /s /e
-)
-else (
+) else (
 xcopy %A%\%A2% %B%
 )
 
@@ -46,9 +45,14 @@ dir /b __pycache__ /s > %temp%\files
 for /f %%a in (%temp%\files) do (rmdir /s /q %%a)
 del %temp%\files
 
-:: komprimuje
+:: přesune k našemu souboru
 cd %MY%
-for /D %%d in (%B%) do "C:\Program Files\7-Zip\7z.exe" a -tzip "package.zip" ".\%%d\*"
+
+:: maže starý soubor zip
+if EXIST %FILE_ZIP% (rmdir /s /q %FILE_ZIP%)
+
+:: komprimuje
+for /D %%d in (%B%) do "C:\Program Files\7-Zip\7z.exe" a -tzip "%FILE_ZIP%" ".\%%d\*"
 
 :: maže kopírované soubory a složky
 rmdir /s /q %B%
