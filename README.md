@@ -5,7 +5,7 @@ Tento projekt má vyhovět požadavku:
 > a zabalí to s **nulovou kompresí** do **ZIP**u. Pak by se dělal release na **jeden klik** myší.
 
 ## You need download:
-https://www.7-zip.org/
+> https://www.7-zip.org/
 
 ## Current version:
 > Version 1.0.2 (Build 4)
