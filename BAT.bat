@@ -1,15 +1,10 @@
-
-::----------------------------------------------------------------------------
-
-
-:: folder_location
+:: umístění složek 
 set A=test\python39-32\lib\site-packages
-:: modules (folder/file.py)
+:: moduly
 set A1=pyparsing
 set A2=yaml.py
 
-
-::-----------------------------------------------------------------------------
+::------------------------------------------------------::
 
 :: vnitřní nastavení
 @ECHO OFF
