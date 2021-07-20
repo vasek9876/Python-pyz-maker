@@ -6,7 +6,7 @@ Tento projekt má vyhovět požadavku:
 
 
 ## Current version:
-> Version 1.0.0 (Build 2)
+> Version 1.0.2 (Build 4)
 > - set file location (pyparsing and yaml - file or folder)
 > - generate folder "package"
 > - copy files (pyparsing and yaml) to folder "package"
