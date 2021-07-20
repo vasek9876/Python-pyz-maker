@@ -6,14 +6,13 @@ Tento projekt má vyhovět požadavku:
 
 
 ## Current version:
-> Version 0.1.0 (Build 1)
+> Version 1.0.0 (Build 2)
 > - set file location (pyparsing and yaml - file or folder)
-> - generate folder "test2"
-> - copy files (pyparsing and yaml) to folder "test2"
-> - delete _pycache_ from tree (from folder "test2")
-> - compress the folder "test2"
+> - generate folder "package"
+> - copy files (pyparsing and yaml) to folder "package"
+> - delete _pycache_ from tree (from folder "package")
+> - compress the folder "package"
 > - save compress folder next to the ".bat"
-> - delete folder "test2"
-
+> - delete folder "package"
 
 
