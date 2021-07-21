@@ -18,4 +18,6 @@ This project has to meet the requirement:
 > - delete folder "package"
 
 ## Features:
-
+> Version 1.1.0-alpha
+> - set file location from list (by for cycle)
+> - find all modules with name (folder+file/only one)
