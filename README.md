@@ -8,7 +8,7 @@ This project has to meet the requirement:
 > https://www.7-zip.org/
 
 ## Current version:
-> Version 1.0.2 (Build 4)
+> Version 1.0.2-alpha (Build 4)
 > - set file location (pyparsing and yaml - file or folder)
 > - generate folder "package"
 > - copy files (pyparsing and yaml) to folder "package"
@@ -17,4 +17,5 @@ This project has to meet the requirement:
 > - save compress folder next to the ".bat"
 > - delete folder "package"
 
+## Features:
 
