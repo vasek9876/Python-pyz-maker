@@ -8,7 +8,7 @@ set A2=yaml.py
 
 :: vnitřní nastavení
 @ECHO OFF
-set FILE_ZIP=package.zip
+set FILE_ZIP=package.pyz
 set MY=%CD%
 set B=package
 
