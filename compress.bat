@@ -1,57 +1,58 @@
-:: umístění složek 
-set A=test\python39-32\lib\site-packages
-:: moduly
-set A1=pyparsing
-set A2=yaml.py
-
-::------------------------------------------------------::
-
-:: vnitřní nastavení
 @ECHO OFF
-set FILE_ZIP=package.pyz
-set MY=%CD%
-set B=package
 
-:: vytvoří adresář pro ukládání
-cd %MY%
-md %B%
+REM ---- VSTUPNÍ PROMĚNNÉ ----
+set ModulesLocation=test\python39-32\lib\site-packages
+set Modules=pyparsing,yaml.py,x.py
+set PyzName=package.zip
+REM -------------------------------------------
 
-:: kopíruje
+REM ---- LOKÁLNÍ PROMĚNNÉ ----
+set MyLocation=%CD%
+set MyPyzTemp=TempPyz
+set MyDataTemp=TempData.dat
+REM -------------------------------------------
 
-:: 1. sobor/složka
-if NOT %A1:~-2,3% == py (
-md %B%\%A1%
-xcopy %A%\%A1% %B%\%A1% /s /e
-) else (
-xcopy %A%\%A1% %B%
+REM ---- vytvoří adresář pro komprimaci ----
+cd %MyLocation%
+md %MyPyzTemp%
+REM -------------------------------------------
+
+REM ---- CYKLUS ----
+for %%M in (%Modules%) do (
+md %ModulesLocation%\%%M 
+xcopy %ModulesLocation%\%%M %MyPyzTemp%\%%M /s /e
 )
 
-:: 2. sobor/složka
-if NOT %A2:~-2,3% == py (
-md %B%\%A2%
-xcopy %A%\%A2% %B%\%A2% /s /e
-) else (
-xcopy %A%\%A2% %B%
-)
+REM nefunguje automatické určování typu souboru
 
-:: smaže __pycache__
-cd %MY%\%B%
-dir /b __pycache__ /s > %temp%\files
-for /f %%a in (%temp%\files) do (rmdir /s /q %%a)
-del %temp%\files
+::if NOT %M1:~-2,3% == py (
+::md %%M 
 
-:: přesune k našemu souboru
-cd %MY%
+::) else (
+::xcopy %ModulesLocation%\%%M %MyPyzTemp%)
+REM -------------------------------------------
 
-:: maže starý soubor zip
-if EXIST %FILE_ZIP% (rmdir /s /q %FILE_ZIP%)
+echo #pycache
+REM ---- smaže __pycache__ ----
+cd %MyPyzTemp%
+dir /b __pycache__ /s > %MyDataTemp%
+for /f %%A in (%MyDataTemp%) do (rmdir /s /q %%A)
+del %MyDataTemp%
+REM -------------------------------------------
 
-:: komprimuje
-for /D %%d in (%B%) do "C:\Program Files\7-Zip\7z.exe" a -tzip "%FILE_ZIP%" ".\%%d\*"
+echo #komprese
+REM ---- smaže starý zip (pyz) a komprimuje----
+cd %MyLocation%
+if EXIST %PyzName% (del /s /q %PyzName%)
+for /D %%d in (%MyPyzTemp%) do "C:\Program Files\7-Zip\7z.exe" a -tzip "%PyzName%" ".\%%d\*"
+REM -------------------------------------------
 
-:: maže kopírované soubory a složky
-rmdir /s /q %B%
 
-echo -----------------------------------------------------------------
-echo Done!
+REM ---- smaže adresář pro komprimaci ----
+cd %MyLocation%
+rmdir /s /q %MyPyzTemp%
+REM -------------------------------------------
+
+REM ---- Čekám na kliknutí a pak ukončím ----
 pause
+REM -------------------------------------------
