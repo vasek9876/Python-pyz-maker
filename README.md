@@ -1,4 +1,4 @@
-# Batch-handler
+# Compress-packer
 This project has to meet the requirement:
 
 > Udělat **BAT-ťák**, který si vytáhne **pyparsing** a **yaml** z **c:\....\python39-32\lib\site-packages**, odstraní **__pycache__** adresáře 
