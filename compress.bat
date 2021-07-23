@@ -20,7 +20,7 @@ REM -------------------------------------------
 REM ---- CYKLUS ----
 for %%M in (%Modules%) do (
 md %ModulesLocation%\%%M 
-xcopy %ModulesLocation%\%%M %MyPyzTemp%\%%M /s /e
+xcopy /s /e %ModulesLocation%\%%M %MyPyzTemp%\%%M 
 )
 
 REM nefunguje automatické určování typu souboru
@@ -34,10 +34,12 @@ REM -------------------------------------------
 
 echo #pycache
 REM ---- smaže __pycache__ ----
-cd %MyPyzTemp%
-dir /b __pycache__ /s > %MyDataTemp%
+cd %MyLocation%\%MyPyzTemp%
+dir /b __pycache__ /s > %MyLocation%\%MyDataTemp%
+cd ..
+echo %MyDataTemp%
 for /f %%A in (%MyDataTemp%) do (rmdir /s /q %%A)
-del %MyDataTemp%
+::del %MyDataTemp%
 REM -------------------------------------------
 
 echo #komprese
