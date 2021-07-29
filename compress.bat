@@ -2,7 +2,8 @@
 
 REM ---- VSTUPNÍ PROMĚNNÉ ----
 set ModulesLocation=test\python39-32\lib\site-packages
-set Modules=pyparsing,yaml.py,x.py
+set Modules=pyparsing,yaml,x
+::set Adons=a
 set PyzName=package.zip
 REM -------------------------------------------
 
@@ -19,27 +20,22 @@ REM -------------------------------------------
 
 REM ---- CYKLUS ----
 for %%M in (%Modules%) do (
-md %ModulesLocation%\%%M 
-xcopy /s /e %ModulesLocation%\%%M %MyPyzTemp%\%%M 
+	set x=%ModulesLocation%\%%M
+	if EXIST %ModulesLocation%\%%M.py (
+		xcopy /s /e %ModulesLocation%\%%M.py %MyPyzTemp% 
+	) else (
+		md %MyPyzTemp%\%%M
+		xcopy /s /e %ModulesLocation%\%%M %MyPyzTemp%\%%M 
+	)
 )
-
-REM nefunguje automatické určování typu souboru
-
-::if NOT %M1:~-2,3% == py (
-::md %%M 
-
-::) else (
-::xcopy %ModulesLocation%\%%M %MyPyzTemp%)
 REM -------------------------------------------
 
 echo #pycache
 REM ---- smaže __pycache__ ----
-cd %MyLocation%\%MyPyzTemp%
-dir /b __pycache__ /s > %MyLocation%\%MyDataTemp%
-cd ..
-echo %MyDataTemp%
+cd %MyPyzTemp%
+dir /b __pycache__ /s > %MyDataTemp%
 for /f %%A in (%MyDataTemp%) do (rmdir /s /q %%A)
-::del %MyDataTemp%
+del %MyDataTemp%
 REM -------------------------------------------
 
 echo #komprese
