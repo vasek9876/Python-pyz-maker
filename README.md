@@ -8,10 +8,10 @@ This project has to meet the requirement:
 > https://www.7-zip.org/
 
 ## Current version:
-> Version 1.2.0-alpha
+> Version 1.2.0
 > - ///
 
 
 ## Features:
-> Version 1.2.1-alpha
+> Version 1.2.1
 > - add log - after compress is done
