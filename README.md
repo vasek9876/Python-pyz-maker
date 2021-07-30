@@ -8,11 +8,10 @@ This project has to meet the requirement:
 > https://www.7-zip.org/
 
 ## Current version:
-> Version 1.1.0-alpha
+> Version 1.2.0-alpha
 > - ///
 
 
 ## Features:
-> Version 1.2.0-alpha
-> - read data from file
-> - addon added
+> Version 1.2.1-alpha
+> - add log - after compress is done
