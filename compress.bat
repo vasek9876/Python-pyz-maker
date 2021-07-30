@@ -31,7 +31,7 @@ cd %MyLocation%
 md %MyPyzTemp%
 REM -------------------------------------------
 
-echo !ESC![34m#kopirovani knihoven !ESC![0m  
+echo !ESC![34m#kopirovani knihoven !ESC![35m
 REM ---- CYKLUS ----
 for %%M in (%Modules%) do (
 	if EXIST %%M (
@@ -62,18 +62,18 @@ for /f %%A in (%MyDataTemp%) do (rmdir /s /q %%A)
 del /q %MyDataTemp%
 REM -------------------------------------------
 
-echo !ESC![34m#komprese !ESC![0m  
+echo !ESC![34m#komprese !ESC![30m 
 REM ---- smaže starý zip (pyz) a komprimuje----
 cd %MyLocation%
 if EXIST %PyzName% (del /q /s  %PyzName%)
 for /D %%d in (%MyPyzTemp%) do "C:\Program Files\7-Zip\7z.exe" a -tzip "%PyzName%" ".\%%d\*"
 REM -------------------------------------------
 
-echo !ESC![34m#cisteni !ESC![0m  
+echo !ESC![34m#cisteni !ESC![30m  
 REM ---- smaže adresář pro komprimaci ----
 cd %MyLocation%
 rmdir /q /s  %MyPyzTemp%
-SETLOCAL DisableDelayedExpansion
+ENDLOCAL
 REM -------------------------------------------
 
 REM ---- Čekám na kliknutí a pak ukončím ----
