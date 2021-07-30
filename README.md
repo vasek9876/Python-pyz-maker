@@ -8,8 +8,8 @@ This project has to meet the requirement:
 > https://www.7-zip.org/
 
 ## Current version:
-> Version 1.2.0
-> - ///
+> Version 1.2.1
+> - Write modules in Modules.dat like: main,pyparsing,yaml...
 
 
 ## Features:
