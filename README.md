@@ -1,1 +1,1 @@
-# only Colors
+# Only colors
