@@ -16,8 +16,7 @@ REM -------------------------------------------
 
 REM ---- VSTUPNÍ PROMĚNNÉ ----
 set ModulesLocation=test\python39-32\lib\site-packages
-set Modules=pyparsing,yaml,x
-set Adons=a
+set Modules=pyparsing,yaml,x,compress
 set PyzName=package.zip
 REM -------------------------------------------
 
@@ -35,9 +34,19 @@ REM -------------------------------------------
 echo !ESC![34m#kopirovani knihoven !ESC![0m  
 REM ---- CYKLUS ----
 for %%M in (%Modules%) do (
-	set x=%ModulesLocation%\%%M
-	if EXIST %ModulesLocation%\%%M.py (
-		xcopy /q /s /e %ModulesLocation%\%%M.py %MyPyzTemp% 
+	if EXIST %%M (
+		md %MyPyzTemp%\%%M
+		xcopy /q /s /e %%M %MyPyzTemp%\%%M
+	) else if EXIST %%M.py (
+		xcopy /q %%M.py %MyPyzTemp%\
+	) else if EXIST %%M.bat (
+		xcopy /q %%M.bat %MyPyzTemp%
+	) else if EXIST %%M.txt (
+		xcopy /q %%M.txt %MyPyzTemp%
+	) else if EXIST %%M.dat (
+		xcopy /q %%M.dat %MyPyzTemp%
+	) else if EXIST %ModulesLocation%\%%M.py (
+		xcopy /q %ModulesLocation%\%%M.py %MyPyzTemp% 
 	) else if EXIST %ModulesLocation%\%%M (
 		md %MyPyzTemp%\%%M
 		xcopy /q /s /e %ModulesLocation%\%%M %MyPyzTemp%\%%M 
