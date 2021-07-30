@@ -60,7 +60,7 @@ if EXIST %PyzName% (del /q /s  %PyzName%)
 for /D %%d in (%MyPyzTemp%) do "C:\Program Files\7-Zip\7z.exe" a -tzip "%PyzName%" ".\%%d\*"
 REM -------------------------------------------
 
-echo !ESC![34m#cisteni pycache !ESC![0m  
+echo !ESC![34m#cisteni !ESC![0m  
 REM ---- smaže adresář pro komprimaci ----
 cd %MyLocation%
 rmdir /q /s  %MyPyzTemp%
