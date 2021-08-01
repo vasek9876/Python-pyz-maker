@@ -11,7 +11,6 @@ This project has to meet the requirement:
 > Version 1.2.1
 > - Write modules in Modules.dat like: main,pyparsing,yaml...
 
-
 ## Features:
 > Version 1.3.0
 > - add log - after compress is done
