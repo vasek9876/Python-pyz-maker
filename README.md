@@ -8,9 +8,16 @@ This project has to meet the requirement:
 > https://www.7-zip.org/
 
 ## Current version:
-> Version 1.2.1
-> - Write modules in Modules.dat like: main,pyparsing,yaml...
-
-## Features:
 > Version 1.3.0
-> - add log - after compress is done
+> - Write your python location in Compress.bat here (full path):
+
+> ![image](https://user-images.githubusercontent.com/76277379/130511966-eafcd09c-1137-4c4c-998f-50925372732b.png)
+
+> - Write your modules in Modules.dat like: main,pyparsing,yaml... (it reads first from "." and next it reads from python location like python import) 
+> - Write it here (only name without ending):
+
+>![image](https://user-images.githubusercontent.com/76277379/130512197-588ec372-9a03-45f7-85ea-5ed52d6c748b.png)
+
+> - Include error detection (not include detection of locked files or folders)
+
+
