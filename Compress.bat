@@ -120,4 +120,4 @@ cd %MyLocation%
 rmdir /q /s  %MyPyzTemp%
 REM -------------------------------------------
 
-pause
+::pause
