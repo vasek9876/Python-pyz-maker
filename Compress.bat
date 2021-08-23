@@ -5,7 +5,7 @@ SETLOCAL EnableExtensions EnableDelayedExpansion
 for /F %%a in ('echo prompt $E ^| cmd') do (set "ESC=%%a")
 REM -------------------------------------------
 
-REM ----#1 kontorla 7 ZIP---- 
+REM ----#0 kontorla 7 ZIP---- 
 if NOT EXIST "C:\Program Files\7-Zip\7z.exe" (
 	echo !ESC![31mYou need 7zip!ESC![0m
 	echo !ESC![33mLink to download https://www.7-zip.org/%CD%!ESC![0m
@@ -16,6 +16,16 @@ if NOT EXIST "C:\Program Files\7-Zip\7z.exe" (
 	echo !ESC![32m7zip ok!ESC![0m)
 REM -------------------------------------------
 
+REM ----#1 kontorla existence složky s moduly----
+if NOT EXIST "Modules.dat" (
+	echo !ESC![31mNo file named Modules.dat!ESC![0m
+	echo !ESC![33mPlease create file Modules.dat and write there your modules!ESC![0m
+	pause
+	exit
+) else (
+	echo !ESC![32mModules.dat ok!ESC![0m)
+REM -------------------------------------------
+	
 REM ---- VSTUPNÍ PROMĚNNÉ ----
 set ModulesLocation=test\python39-32\lib\site-packages
 set Modules=Modules.dat
