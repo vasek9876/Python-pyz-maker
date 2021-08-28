@@ -11,7 +11,7 @@ This project has to meet the requirement:
 > Version 1.3.0
 > - Write your python location in Compress.bat here (full path):
 
-> ![image](https://user-images.githubusercontent.com/76277379/130511966-eafcd09c-1137-4c4c-998f-50925372732b.png)
+> ![image](https://user-images.githubusercontent.com/76277379/131219524-5d61b626-9957-42ae-a6bd-93158666f9ba.png)
 
 > - Write your modules in Modules.dat like: main,pyparsing,yaml... (it reads first from "." and next it reads from python location like python import) 
 > - Write it here (only name without ending):
