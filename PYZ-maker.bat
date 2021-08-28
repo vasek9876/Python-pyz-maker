@@ -1,6 +1,6 @@
 @ECHO OFF
 
-REM ---- COLORS ----
+REM ----COLORS----
 SETLOCAL EnableExtensions EnableDelayedExpansion
 for /F %%a in ('echo prompt $E ^| cmd') do (set "ESC=%%a")
 REM -------------------------------------------
@@ -16,7 +16,7 @@ if NOT EXIST "C:\Program Files\7-Zip\7z.exe" (
 	echo !ESC![32m7zip ok!ESC![0m)
 REM -------------------------------------------
 
-REM ----#1 kontorla existence složky s moduly----
+REM ----#1 check existence of file with modules----
 if NOT EXIST "Modules.dat" (
 	echo !ESC![31mNo file named Modules.dat!ESC![0m
 	echo !ESC![33mPlease create file Modules.dat and write there your modules!ESC![0m
@@ -26,20 +26,20 @@ if NOT EXIST "Modules.dat" (
 	echo !ESC![32mModules.dat ok!ESC![0m)
 REM -------------------------------------------
 	
-REM ---- VSTUPNÍ PROMĚNNÉ ----
+REM ----Input vars----
 set ModulesLocation=test\python39-32\lib\site-packages
 set Modules=Modules.dat
 set PyzName=Package.pyz
 REM -------------------------------------------
 
-REM ---- LOKÁLNÍ PROMĚNNÉ ----
+REM ----Local vars----
 set MyLocation=%CD%
 set MyPyzTemp=TempPyz
 set MyDataTemp=TempData.dat
 set /a ErrorLevel = 0
 REM -------------------------------------------
 
-REM ----#2 kontorla umístění pythonu---- 
+REM ----#2 chack python---- 
 cd %ModulesLocation%
 cd ..
 cd ..
@@ -52,12 +52,12 @@ if NOT EXIST "%CD%\python.exe" (
 	echo !ESC![32mPython ok!ESC![0m)
 REM -------------------------------------------
 
-REM ---- vytvoří adresář pro komprimaci ----
+REM ----create folder for zip/pyz----
 cd %MyLocation%
 md %MyPyzTemp%
 REM -------------------------------------------
 
-REM ---- CYKLUS ---- # ošetřit proti nenalezení modulu
+REM ----FOR CYCLE----
 for /f  %%N in (%Modules%) do (for %%M in (%%N) do (
 	if EXIST %%M (
 		md %MyPyzTemp%\%%M
@@ -87,7 +87,7 @@ set /a ErrorLevel = 0
 pause)
 REM -------------------------------------------
 
-REM ---- smaže __pycache__ ----
+REM ----del __pycache__----
 cd %MyPyzTemp%
 dir /b __pycache__ /s > %MyDataTemp%
 set /a count = 1
@@ -98,10 +98,10 @@ for /f %%A in (%MyDataTemp%) do (
 del /q %MyDataTemp%
 REM -------------------------------------------
 
-REM ----#5 počet smazaných pycache----
+REM ----#5 count deleted __pycache__----
 echo !ESC![32m__pycache__ ok (%count%)!ESC![30m
 
-REM ----#6 kontorla existence komprimované složky----
+REM ----#6 check existence of comprimate folder----
 if NOT EXIST "%MyLocation%\%MyPyzTemp%" (
 	echo !ESC![31mInternal error -1!ESC![0m
 	echo !ESC![33mContact the software distributor!ESC![0m
@@ -110,13 +110,13 @@ if NOT EXIST "%MyLocation%\%MyPyzTemp%" (
 )
 REM -------------------------------------------
 
-REM ---- smaže starý zip (pyz) a komprimuje----
+REM ---- delete old zip (pyz) and comprimate----
 cd %MyLocation%
 if EXIST %PyzName% (del /q /s  %PyzName%)
 for /D %%d in (%MyPyzTemp%) do "C:\Program Files\7-Zip\7z.exe" a -tzip "%PyzName%" ".\%%d\*"
 REM -------------------------------------------
 
-REM ----#7 kontorla existence pyz souboru----
+REM ----#7 check existence of pyz----
 if NOT EXIST "%MyLocation%\%PyzName%" (
 	echo !ESC![31mInternal error -2!ESC![0m
 	echo !ESC![33mContact the software distributor!ESC![0m
@@ -125,9 +125,7 @@ if NOT EXIST "%MyLocation%\%PyzName%" (
 )
 REM -------------------------------------------
 
-REM ---- smaže adresář pro komprimaci ----
+REM ----delete data from comprimate process----
 cd %MyLocation%
 rmdir /q /s  %MyPyzTemp%
 REM -------------------------------------------
-
-::pause
