@@ -20,4 +20,4 @@ This project has to meet the requirement:
 
 > - Include error detection (not include detection of locked files or folders)
 
-
+> - ! Do not close the cmd - because of the temp files (press any key to continue)
