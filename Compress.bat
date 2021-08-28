@@ -5,7 +5,7 @@ SETLOCAL EnableExtensions EnableDelayedExpansion
 for /F %%a in ('echo prompt $E ^| cmd') do (set "ESC=%%a")
 REM -------------------------------------------
 
-REM ----#0 kontorla 7 ZIP---- 
+REM ----#0 check 7 ZIP---- 
 if NOT EXIST "C:\Program Files\7-Zip\7z.exe" (
 	echo !ESC![31mYou need 7zip!ESC![0m
 	echo !ESC![33mLink to download https://www.7-zip.org/%CD%!ESC![0m
