@@ -39,7 +39,7 @@ set MyDataTemp=TempData.dat
 set /a ErrorLevel = 0
 REM -------------------------------------------
 
-REM ----#2 chack python---- 
+REM ----#2 check python---- 
 cd %ModulesLocation%
 cd ..
 cd ..
