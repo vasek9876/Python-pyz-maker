@@ -8,7 +8,7 @@ This project has to meet the requirement:
 > https://www.7-zip.org/
 
 ## Current version:
-> Version 1.3.0
+> Version 1.3.1
 > - Write your python location in Compress.bat here (full path) + lib\site-packages:
 
 > ![image](https://user-images.githubusercontent.com/76277379/131219524-5d61b626-9957-42ae-a6bd-93158666f9ba.png)
